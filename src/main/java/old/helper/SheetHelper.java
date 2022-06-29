@@ -2,9 +2,11 @@ package old.helper;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class SheetHelper {
+    private static final Integer SHEET_LENGTH = 500; //fix this
     private static final Integer EXCEL_OFFSET = 1;
     private static final Integer ASCII_OFFSET = 96;
     public static Double readCellFromSheetAsDouble(XSSFSheet sheet, int row, String col) {
@@ -74,6 +76,23 @@ public class SheetHelper {
             return cell.getStringCellValue();
         }
         return "";
+    }
+
+    public static int getTopLeftHeaderForTable(Sheet sheet, String str) {
+
+        for (int i = 0; i < SHEET_LENGTH; i++) {
+            try {
+                //System.out.println(sheet.getRow(i).getCell(0).getStringCellValue());
+                if (sheet.getRow(i).getCell(0).getStringCellValue().equals(str)) {
+                    return i+1+1;
+                }
+            } catch (NullPointerException ignored) {
+
+            }
+
+        }
+
+        return -1;
     }
 
 
