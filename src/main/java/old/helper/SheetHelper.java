@@ -173,12 +173,20 @@ public class SheetHelper {
     }
     private static List<Row> getRowsFromTopLeftHeader(Sheet sheet, int headerRow) {
         List<Row> rows = new ArrayList<>();
-
+        boolean isFirst = true;
         Cell cell = sheet.getRow(headerRow).getCell(0);
-        while(!isEndingRow(cell.getStringCellValue())) {
+        while(isFirst || !isEndingRow(cell.getStringCellValue())) {
             rows.add(sheet.getRow(headerRow));
             headerRow++;
-            cell = sheet.getRow(headerRow).getCell(0);
+
+            try {
+                cell = sheet.getRow(headerRow).getCell(0);
+            } catch (NullPointerException e) {
+                return rows;
+            }
+
+
+            isFirst = false;
         }
 
         return rows;

@@ -32,25 +32,25 @@ public class PopulationTrends {
 
         for (int i = 0; i < rows.size(); i++) {
             //Replace all removes all nonascii chars (random ? square thing)
-            switch(rows.get(i).getCell(0).getStringCellValue().replaceAll("[^\\x00-\\x7F]", "")) {
+            switch(rows.get(i).getCell(0).getStringCellValue().replaceAll("[^\\x00-\\x7F]", "").trim()) {
                 case "Population":
-                    population_2000 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "B");
-                    population_2010 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "C");
-                    population_2021 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "D");
-                    population_2026 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "E");
-                    population_2031 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "F");
+                    this.population_2000 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "B");
+                    this.population_2010 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "C");
+                    this.population_2021 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "D");
+                    this.population_2026 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "E");
+                    this.population_2031 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "F");
                     break;
                 case "Population Change":
-                    populationChange_2000_2010 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "C");
-                    populationChange_2010_2021 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "D");
-                    populationChange_2021_2026 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "E");
-                    populationChange_2026_2031 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "F");
+                    this.populationChange_2000_2010 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "C");
+                    this.populationChange_2010_2021 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "D");
+                    this.populationChange_2021_2026 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "E");
+                    this.populationChange_2026_2031 = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "F");
                     break;
                 case "Percent Change":
-                    populationChangePercent_2000_2010 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "C");
-                    populationChangePercent_2010_2021 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "D");
-                    populationChangePercent_2021_2026 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "E");
-                    populationChangePercent_2026_2031 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "F");
+                    this.populationChangePercent_2000_2010 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "C");
+                    this.populationChangePercent_2010_2021 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "D");
+                    this.populationChangePercent_2021_2026 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "E");
+                    this.populationChangePercent_2026_2031 = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "F");
                     break;
             }
 

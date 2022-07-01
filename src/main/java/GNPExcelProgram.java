@@ -1,3 +1,4 @@
+import data.PopulationRecent8QuarterHistory;
 import data.PopulationTrends;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -19,6 +20,8 @@ public class GNPExcelProgram {
         XSSFSheet sheet = workbook.getSheetAt(0);
 
         new PopulationTrends(sheet);
+
+        new PopulationRecent8QuarterHistory(sheet);
     }
 
 
