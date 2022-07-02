@@ -1,4 +1,4 @@
-package data;
+package data.population;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -56,7 +56,6 @@ public class PopulationRecent8QuarterHistory {
 
                     break;
                 case "Change":
-                    System.out.println(2);
                     this.populationRecent8QuarterHistoryChange_2019_2nd_2019_3rd = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "C");
                     this.populationRecent8QuarterHistoryChange_2019_3rd_2019_4th = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "D");
                     this.populationRecent8QuarterHistoryChange_2019_4th_2020_1st = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "E");
@@ -66,7 +65,6 @@ public class PopulationRecent8QuarterHistory {
                     this.populationRecent8QuarterHistoryChange_2020_3rd_2020_4th = readCellRawFromSheetAsInteger(sheet, rows.get(i).getRowNum(), "I");
                     break;
                 case "Percent Change":
-                    System.out.println(3);
                     this.populationRecent8QuarterHistoryChangePercent_2019_2nd_2019_3rd = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "C");
                     this.populationRecent8QuarterHistoryChangePercent_2019_3rd_2019_4th = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "D");
                     this.populationRecent8QuarterHistoryChangePercent_2019_4th_2020_1st = readCellRawFromSheetAsDouble(sheet, rows.get(i).getRowNum(), "E");

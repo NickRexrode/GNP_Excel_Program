@@ -1,13 +1,10 @@
-import data.PopulationRecent8QuarterHistory;
-import data.PopulationTrends;
+import data.population.PopulationCurrentlyEnrolledInEducation;
+import data.population.PopulationRecent8QuarterHistory;
+import data.population.PopulationTrends;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class GNPExcelProgram {
 
@@ -22,6 +19,8 @@ public class GNPExcelProgram {
         new PopulationTrends(sheet);
 
         new PopulationRecent8QuarterHistory(sheet);
+
+        new PopulationCurrentlyEnrolledInEducation(sheet);
     }
 
 
