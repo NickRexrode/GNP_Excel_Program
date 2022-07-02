@@ -1,6 +1,4 @@
-import data.population.PopulationCurrentlyEnrolledInEducation;
-import data.population.PopulationRecent8QuarterHistory;
-import data.population.PopulationTrends;
+import data.population.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -16,11 +14,13 @@ public class GNPExcelProgram {
 
         XSSFSheet sheet = workbook.getSheetAt(0);
 
-        new PopulationTrends(sheet);
-
-        new PopulationRecent8QuarterHistory(sheet);
-
-        new PopulationCurrentlyEnrolledInEducation(sheet);
+//        new PopulationTrends(sheet);
+//
+//        new PopulationRecent8QuarterHistory(sheet);
+//
+//        new PopulationCurrentlyEnrolledInEducation(sheet);
+       // new PopulationByEducationalAttainment25Plus(sheet);
+        new PopulationByMaritalStatusAge15Plus(sheet);
     }
 
 
