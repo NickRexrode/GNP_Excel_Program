@@ -1,4 +1,4 @@
-package data.population;
+package data.people;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -92,7 +92,6 @@ public class PopulationByMaritalStatusAge15Plus {
 
         }
 
-        System.out.println(this.toString());
     }
 
     @Override
