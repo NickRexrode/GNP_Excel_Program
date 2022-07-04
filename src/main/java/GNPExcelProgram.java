@@ -1,6 +1,7 @@
 import data.households.HouseHoldsPovertyDetail;
 import data.households.HouseholdIncomeForecast;
 import data.households.Households;
+import data.households.HouseholdsWealth;
 import data.people.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -29,7 +30,8 @@ public class GNPExcelProgram {
         //new AgeForecast(sheet);
         //new Households(sheet);
         //new HouseholdIncomeForecast(sheet);
-        new HouseHoldsPovertyDetail(sheet);
+        //new HouseHoldsPovertyDetail(sheet);
+        new HouseholdsWealth(sheet);
     }
 
 
