@@ -1,43 +1,78 @@
-import data.families.Families;
-import data.families.FamiliesNoChildren;
-import data.families.FamiliesWithChildren;
-import data.households.HouseHoldsPovertyDetail;
-import data.households.HouseholdIncomeForecast;
-import data.households.Households;
-import data.households.HouseholdsWealth;
-import data.people.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class GNPExcelProgram {
 
+
+    public static List<File> getAllExcelFilesInRecursiveDirectory(File parent) {
+        List<File> files = new ArrayList<>();
+
+        File[] children = parent.listFiles();
+
+        for (int i = 0; i < children.length; i++) {
+            File file = children[i];
+
+            if (file.isDirectory()) {
+                files.addAll(getAllExcelFilesInRecursiveDirectory(file));
+            } else if (file.getName().endsWith(".xlsx")) {
+                files.add(file);
+            }
+        }
+        return files;
+    }
     public static void main(String[] args) throws IOException {
 
+        if (args.length < 1) {
+            System.err.println("Error: Invalid arguments, supply file or directory");
+            return;
+        }
 
-        FileInputStream inputStream = new FileInputStream(new File("Wisconsin_Conference_UMC_Report.xlsx"));
-        XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+        String fileDirectory = args[0];
 
-        XSSFSheet sheet = workbook.getSheetAt(0);
+        File file = new File(fileDirectory);
 
-//        new PopulationTrends(sheet);
-//
-//        new PopulationRecent8QuarterHistory(sheet);
-//
-//        new PopulationCurrentlyEnrolledInEducation(sheet);
-       // new PopulationByEducationalAttainment25Plus(sheet);
-       // new PopulationByMaritalStatusAge15Plus(sheet);
-        //new OutreachOpportunitiesChildren(sheet);
-        //new OutreachOpportunitiesYouthAndYoungAdults(sheet);
-        //new AgeForecast(sheet);
-        //new Households(sheet);
-        //new HouseholdIncomeForecast(sheet);
-        //new HouseHoldsPovertyDetail(sheet);
-        //new HouseholdsWealth(sheet);
-        //new Families(sheet);
-        //new FamiliesWithChildren(sheet);
-        new FamiliesNoChildren(sheet);
+        if (!file.exists()) {
+            System.err.println("Error: Invalid File: "+file.getAbsolutePath());
+            return;
+        }
+
+        List<File> files = getAllExcelFilesInRecursiveDirectory(file);
+
+        Iterator<File> iterator = files.iterator();
+        while(iterator.hasNext()) {
+            File reportFile = iterator.next();
+            FileInputStream inputStream = new FileInputStream(reportFile);
+
+            XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+            XSSFSheet sheet = workbook.getSheetAt(0);
+
+            UMCReport report = new UMCReport(sheet);
+
+            File outputFile = new File(fileDirectory + "\\" + report.getDistrict()+".json");
+            if (!outputFile.createNewFile()) {
+                System.err.println("Could not create output file: "+ outputFile.getAbsolutePath());
+            }
+
+            String outputJSON;
+            try {
+                outputJSON = report.toJSON();
+            } catch (IllegalAccessException e) {
+                System.err.println("Could not create JSON output");
+                outputJSON = "{}";
+            }
+            PrintWriter printWriter = new PrintWriter(outputFile);
+            printWriter.write(outputJSON);
+            printWriter.flush();
+            printWriter.close();
+            System.out.println("Successfully wrote JSON output for: "+report.getDistrict()+ " | to "+outputFile.getAbsolutePath());
+        }
+
+
     }
 
 

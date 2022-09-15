@@ -36,7 +36,6 @@ public class OutreachOpportunitiesChildren {
 
         }
 
-        System.out.println(this.toString());
     }
 
 

@@ -55,7 +55,6 @@ public class HouseHoldsPovertyDetail {
             }
 
         }
-        System.out.println(this.toString());
     }
 
     @Override

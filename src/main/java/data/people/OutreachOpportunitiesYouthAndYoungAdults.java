@@ -23,7 +23,7 @@ public class OutreachOpportunitiesYouthAndYoungAdults {
             }
 
         }
-        System.out.println(this.toString());
+
     }
 
     @Override

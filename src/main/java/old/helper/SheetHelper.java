@@ -74,12 +74,12 @@ public class SheetHelper {
         try {
             cell =sheet.getRow(row).getCell(col);
         } catch (NullPointerException e) {
+
             return "";
         }
         if (cell ==  null) {
             return "";
         }
-
         if (cell.getCellTypeEnum().equals(CellType.BLANK)) {
             return "";
         }

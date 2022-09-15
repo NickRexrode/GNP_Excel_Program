@@ -76,9 +76,6 @@ public class HouseholdsWealth {
             }
 
         }
-        System.out.println(this.toString());
-
-
 
     }
 
